@@ -1,0 +1,197 @@
+body {
+    padding-top: 50px;
+    background-color: #f5f5f0;
+}
+
+.navbar {
+    background-color: #11ca9c;
+}
+
+.page-header {
+    padding: 20px 20px 20px 0px;
+}
+
+.form-control {
+    width: 250px;
+}
+
+.formdouble {
+    width: 250px;
+}
+
+.propertyform {
+    background-color: #faf0f0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.propertyform>input {
+    border: #ebebe0;
+}
+
+input[type=text],
+select {
+    width: 500px;
+    padding: 5px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    width: 500px;
+    height: 100px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+}
+
+.img {
+    height: 168px;
+    width: 298px;
+}
+
+.propertyform>div {
+    margin-top: -12px;
+}
+
+.propertyinfo {
+    padding: 10px;
+    text-align: left;
+}
+
+.location {
+    margin-bottom: 70px;
+}
+
+.price {
+    background-color: #33adff;
+    border-radius: 19px;
+    padding: 5px 10px 5px 10px;
+}
+
+.propertybutton {
+    background-color: #00b386;
+    width: 298px;
+    height: 35px;
+    border: none;
+    justify-content: center;
+    align-self: flex-end;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a {
+    color: white;
+}
+
+h6 {
+    padding: 20;
+    text-align: left;
+}
+
+.column {
+    /* f loat: left; 
+    flex: -10px;*/
+    width: 350px;
+}
+
+.column2 {
+    padding-left: 20px;
+    padding-bottom: 10px;
+    width: 400px;
+    font-weight: bold;
+}
+
+.row {
+    border: 1px solid #e0ebeb;
+    width: 850px;
+    background-color: #e7e4e4;
+    margin-top: 60px;
+}
+
+.propertiesimg {
+    width: 350px;
+    height: 315px;
+}
+
+.first {
+    display: inline-block;
+}
+
+.realtorbutton {
+    border: none;
+    border-radius: 4px;
+    background-color: #00b386;
+    padding: 5px;
+    color: white;
+}
+
+.individualprice {
+    background-color: #5FA2FB;
+    border-radius: 15px;
+    margin-right: 20px;
+    color: white;
+    padding: 4px;
+}
+
+.individualtype {
+    background-color: #FBBC1B;
+    border-radius: 15px;
+    color: white;
+    padding: 4px 6px 5px 3px;
+}
+
+.grid-container {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+.grid-container>div {
+    background-color: #f1f1f1;
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 10px 8px 10px #888888;
+    border: 0.5px solid #888888;
+    background-color: #f5d6f5;
+    height: 380px;
+    position: relative;
+}
+
+.flaticon1 {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.second,
+.first,
+.title {
+    padding-bottom: 15px;
+}
+
+.title {
+    padding-top: 10px;
+}
+
+.Bedrooms {
+    margin-right: 15px;
+}
+
+.Bedrooms {
+    margin-right: 15px;
+}
