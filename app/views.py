@@ -37,12 +37,41 @@ def loginacc():
             session['uid'] = user['UID']
             session['email'] = user['email']
         
-        return redirect(url_for('home'),user['FirstName'])
+        return redirect(url_for('home'))
     else:
         msg = 'Incorrect email/password!'
    
     return render_template('login.html', msg='')
 
+@app.route('/login/recipe', methods=['GET', 'POST'])
+def recipe():
+    if 'loggedin' in session:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT IName FROM ingredient')
+        ingredients = cursor.fetchall()
+        cursor.execute('SELECT Quantity,measurements from measurement')
+        measurements=cursor.fetchall()
+
+        return render_template('recipe.html', email=session['email'], ingredients=ingredients, measurements=measurements)
+    return redirect(url_for('loginacc'))
+
+@app.route('/login/home/breakfast', methods=['GET', 'POST'])
+def breakfast():
+    if 'loggedin' in session:
+        return render_template('breakfast.html', email=session['email'])
+    return redirect(url_for('loginacc'))
+
+@app.route('/login/home/supermarket', methods=['GET', 'POST'])
+def supermarket():
+    if 'loggedin' in session:
+        return render_template('supermarket.html', email=session['email'])
+    return redirect(url_for('loginacc'))
+
+@app.route('/login/home/ingredients', methods=['GET', 'POST'])
+def ingredients():
+    if 'loggedin' in session:
+        return render_template('ingredients.html', email=session['email'])
+    return redirect(url_for('loginacc'))
 
 @app.route('/login/register', methods=['GET', 'POST'])
 def register():
@@ -82,116 +111,30 @@ def home():
 @app.route('/login/logout')
 def logout():
    session.pop('loggedin', None)
-   session.pop('id', None)
+   session.pop('uid', None)
    session.pop('email', None)
    return redirect(url_for('loginacc'))
 
+@app.route('/')
+def base():
+    return render_template('login.html')
+    
 @app.route('/login/profile')
 def profile():
     # Check if user is loggedin
     if 'loggedin' in session:
-        #cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        #cursor.execute('SELECT * FROM accounts WHERE id = %s', (session['id'],))
-        #account = cursor.fetchone()
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM user WHERE uid = %s', (session['uid'],))
+        user = cursor.fetchone()
         # Show the profile page with account info
         return render_template('profile.html')
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
 
-''' @app.route('/property', methods=['POST', 'GET'])
-def property():
-    form=MyForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        photo=request.files['photo']
-        filename=secure_filename(photo.filename)
-        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        flash('File Saved', 'success')
-        return redirect(url_for('home'))
-    return render_template('property.html',form=form) '''
-
-
-""" @app.route('/property', methods=['POST', 'GET'])
-def property():
-    form=MyForm()
-    if request.method == 'POST' and form.validate_on_submit():
-        #photo=request.files['photo']
-        photo=form.photo.data
-        filename=secure_filename(photo.filename)
-        typevalue=dict(form.propertyType.choices).get(form.propertyType.data)
-        photo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        property=Property(request.form['title'],request.form['description'], request.form['rooms'],
-        request.form['bathroom'],request.form['price'],
-        request.form['propertyType'], request.form['location'], filename)
-        #photo1=request.file['photo'].read()
-        db.session.add(property)
-        db.session.commit()
-        flash('Propery was sucessfully added', 'success')
-        return redirect(url_for('properties'))
-    flash_errors(form)
-    return render_template('property.html',form=form) """
-
-
-""" @app.route('/property/<propertyid>', methods=['get'])
-def individualproperty(propertyid):
-    query=db.session.query(Property).filter_by(id=propertyid)
-    if request.method=='get':
-        print(request.form['button'])
-    return render_template('individualproperty.html',query=query) """
-
-''' @app.route('/properties')
-def property():
- property = db.session.query(Property).all()
- return render_template('show_users.html',property=property) '''
 
 
 
-""" def get_uploaded_images():
-    lst=[]
-    rootdir=os.getcwd()
-    for subdir, dirs, files in os.walk(rootdir + '/uploads/'):
-        for file in files:
-            lst.append(file)
-    return lst
-
-@app.route("/uploads/<filename>")
-def get_image(filename):
-    root_dir = os.getcwd()
-    return send_from_directory(os.path.join(root_dir, app.config['UPLOAD_FOLDER']), filename)
-
-@app.route('/properties')
-def properties():
-    #items=get_uploaded_images()
-    items=db.session.query(Property).all()
-    return render_template("properties.html", items=items) """
-
-
-
-""" 
-@app.route('/login', methods=['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] != app.config['ADMIN_USERNAME'] or request.form['password'] != app.config['ADMIN_PASSWORD']:
-            error = 'Invalid username or password'
-        else:
-            session['logged_in'] = True
-            
-            flash('You were logged in', 'success')
-            return redirect(url_for('property'))
-    return render_template('login.html', error=error)
-
-
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    flash('You were logged out', 'success')
-    return redirect(url_for('home')) """
-
-
-###
-# The functions below should be applicable to all Flask apps.
-###
 
 # Flash errors from the form if validation fails
 def flash_errors(form):

@@ -76,6 +76,14 @@ body {
     padding-top: 20px;
 }
 
+.recipe form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
 .login form label,
 .register form label {
     display: flex;
@@ -93,6 +101,15 @@ body {
 .register form input[type="password"],
 .register form input[type="text"],
 .register form input[type="email"] {
+    width: 310px;
+    height: 50px;
+    border: 1px solid #dee0e4;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+.recipe form input[type="file"],
+.recipe form input[type="text"] {
     width: 310px;
     height: 50px;
     border: 1px solid #dee0e4;
@@ -203,4 +220,57 @@ body.loggedin {
 .content>div p {
     padding: 5px;
     margin: 0 0 10px 0;
+}
+
+.recipebox {
+    display: table;
+    clear: both;
+}
+
+.recipecol {
+    float: left;
+    width: 40%;
+    padding: 10px;
+}
+
+.dropbtn {
+    background-color: #0f0f0a;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    width: 950px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #272723;
 }

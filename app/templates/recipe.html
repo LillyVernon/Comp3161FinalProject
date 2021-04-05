@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+</head>
+
+<body class="loggedin">
+    <nav class="navtop">
+        <div>
+            <h1>Meal Planner</h1>
+            <a href="{{ url_for('home') }} "><i class="fas fa-home"></i>Home</a>
+            <a href="{{ url_for('profile') }} "><i class="fas fa-user-circle"></i>Profile</a>
+            <a href="{{ url_for('logout') }} "><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </div>
+    </nav>
+    <div class="recipe">
+        <p style="text-align: center;">Creating a Recipe</p>
+        <form>
+            <div style="background-color: 	#D3D3D3;" class="recipebox">
+                <div class="recipecol">
+                    <p> Select Ingredients</p>
+                    <select name="ingredients" class="ingredient"> 
+                        {% for measurement in measurements%}
+                        <option value="{{measurement['Quantity']}}">{{measurement['Quantity']}}</option>  
+                    {% endfor%}
+                </select>
+                    <select name="ingredients" class="ingredient"> 
+                        {% for ingredient in ingredients%}
+                        <option value="{{ingredient['IName']}}">{{ingredient['IName']}}</option>  
+                    {% endfor%}
+                </select>
+                </div>
+                <p> Add Instructions for Recipe</p>
+                <div class="recipecol"> <textarea name="instruction" rows="10" cols="30" placeholder="Enter instructions for Recipe"> </textarea>
+                    <input type="file" id="photo" name="photo">
+                </div>
+
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
