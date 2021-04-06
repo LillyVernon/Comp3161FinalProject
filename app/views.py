@@ -15,6 +15,7 @@ import base64
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
+import random
 
 #.\venv\Scripts\activate
 
@@ -58,6 +59,20 @@ def recipe():
 @app.route('/login/home/breakfast', methods=['GET', 'POST'])
 def breakfast():
     if 'loggedin' in session:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT RecipeID from recipe')
+        recipeid=cursor.fetchall()
+        print(recipeid)
+        ran=random.choice(recipeid)
+        cursor.execute('SELECT Manual.steps, Manual.instructions from manual where recipeID =%s', str(ran['RecipeID']),)
+        instruction=cursor.fetchall()
+        #print(instruction)
+        #create['recipeIngredients']="CREATE TABLE RecipeIngredient (RecipeID int not null, IngredientID int not null, MID int not null, amount float, 
+        # foreign key(RecipeID) references Recipe(RecipeID), foreign key(IngredientID) references ingredient(IngredientID), foreign key(MID) references Measurement(MID))"
+        cursor.execute('select * from recipeingredient where recipeID=%s', str(ran['RecipeID']),)
+        recipeingredients=cursor.fetchall()
+        print(recipeingredients)
+        #cursor.execute('insert into meal()', str(ran['RecipeID']),)
         return render_template('breakfast.html', email=session['email'])
     return redirect(url_for('loginacc'))
 
