@@ -18,12 +18,12 @@
         </div>
     </nav>
     <div class="recipe">
-        <p style="text-align: center;">Creating a Recipe</p>
+        <p id = "recipe-header" style="text-align: center;">Creating a Recipe</p>
         <form>
-            <div style="background-color: 	#D3D3D3;" class="recipebox">
+            <div style="background-color:#D3D3D3; width: 45%;" class="recipebox">
                 <div class="recipecol">
                     <p> Select Ingredients</p>
-                    <select name="ingredients" class="ingredient"> 
+                    <select name="ingredients" class="ingredient" style="margin-top: 10px;"> 
                         {% for measurement in measurements%}
                         <option value="{{measurement['Quantity']}}">{{measurement['Quantity']}}</option>  
                     {% endfor%}
@@ -34,9 +34,9 @@
                     {% endfor%}
                 </select>
                 </div>
-                <p> Add Instructions for Recipe</p>
-                <div class="recipecol"> <textarea name="instruction" rows="10" cols="30" placeholder="Enter instructions for Recipe"> </textarea>
-                    <input type="file" id="photo" name="photo">
+                <p style="text-align: center; font-weight: bold; font-family: arial, sans-serif; background-color: #0f0f0a; color: #fff; padding: 20px 0px; margin: 0px 0px 10px 0px;"> Add Instructions for Recipe</p>
+                <div class="recipecol"> 
+                    <textarea name="instruction" rows="15" cols="40" placeholder="Enter instructions for Recipe"> </textarea>  
                 </div>
 
             </div>

@@ -50,11 +50,11 @@ create['Ingredient']="CREATE TABLE Ingredient (IngredientID int, IName varchar(2
 
 create['Measurement']="CREATE TABLE Measurement (MID int, Quantity float, measurements varchar(255),  primary key(MID))"
 
-create['GroceryList']="CREATE TABLE GroceryList(GLID varchar(255), IngredientID int,  primary key(GLID))"
+create['GroceryList']="CREATE TABLE GroceryList(GLID int, IngredientID int,  primary key(GLID))"
 
-create['KitchenSupply']="CREATE TABLE KitchenSupply(IngredientID int, MID int, KSID varchar(255), primary key(KSID), foreign key(IngredientID) references ingredient(IngredientID) )"
+create['KitchenSupply']="CREATE TABLE KitchenSupply(IngredientID int, MID int, KSID int, primary key(KSID), foreign key(IngredientID) references ingredient(IngredientID) )"
 
-create['recipeIngredients']="CREATE TABLE RecipeIngredient (RecipeID int not null, IngredientID int not null, MID int not null, amount float, foreign key(RecipeID) references Recipe(RecipeID), foreign key(IngredientID) references ingredient(IngredientID), foreign key(MID) references Measurement(MID))"
+create['recipeIngredients']="CREATE TABLE RecipeIngredient (RecipeID int not null, IngredientID int not null, MID int not null, servings float, foreign key(RecipeID) references Recipe(RecipeID), foreign key(IngredientID) references ingredient(IngredientID), foreign key(MID) references Measurement(MID))"
 
 
 for tables in create:
